@@ -1,0 +1,28 @@
+{
+  "name": "control-google-forms-with-nodejs",
+  "version": "1.0.0",
+  "description": "this project aims to implement an automated social instrument for CIAP",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [
+    "automation",
+    "social",
+    "instrument",
+    "nodejs",
+    "google-forms-api"
+  ],
+  "author": "Leonardo Costa",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "faunadb": "^4.6.0",
+    "googleapis": "^105.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}

@@ -1,0 +1,60 @@
+url guia form API
+https://developers.google.com/forms/api/guides/retrieve-forms-responses
+forms_social_key=fnAEsMecZ4ACT9yxg4iZ_vVOskdFf_JrYjcVaRnp;
+
+fauna_db_key=fnAEsa06_nACUCSGDy0JftOmcDOe_I7kBDtX87o9
+
+
+________________________________________________________________________________
+retrieve data application examples
+
+1. first step
+
+ //create client instance for auth
+  const client = await auth.getClient();
+
+  // instance of Google Forms API
+  const forms = google.forms({ version: "v1", auth: client })
+
+  const formId = "11DahP8CT-Azlq4sfcHxq-Qi5lCPl62Nf7HsEjkF_vKU";
+
+________________________________________________________________________________
+examples: 
+
+  //retrieve form contents and metadata
+  const metaData = await forms.forms.get({
+    auth,
+    formId
+  });
+
+    //retrieve all form responses 
+  const allResponsesData = await forms.forms.responses.list({
+    auth,
+    formId,
+  });
+
+    //retrieve a single form response
+  const singleFormResponse = await forms.forms.responses.get({
+    formId,
+    responseId
+  }) 
+
+  _______________________________
+  [x] O sistema deve utilizar as credenciais para se autenticar para usar a api do google form
+  [x] O sistema deve retornar os dados dos formulários do google form através do uso da api
+
+  POST /scores
+  [x] O sistema deve iterar sobre os dados de cada formulário preenchido e gerar um score baseado nas respostas
+  [x] O sistema deve armazenar no banco de dados o score com dados de identificação referente a quem pertence o formulário com a seguinte estrutura: { identification, psychosocialRecord, score };
+
+  GET /scores
+  [x] O sistema deve retornar os scores e seus respectivos dados de identificação salvos no banco de dados
+  [x] os dados retornados devem vir ordenados pelo score de forma descendente
+
+  Regras de negócio
+  [x] O sistema deve garantir que um formulário que já tenha tido o seu score calculado não passe pelo processo de cálculo novamente.
+
+  [] A aplicação deverá poder excluir um registro do Banco de Dados e do google forms ao mesmo tempo //atualmente está deletando somente no banco de dados
+  [] A aplicação deverá ter uma barra de busca por id e por nome
+  [] A aplicação deve ter a função de paginação 
+  [] A aplicação poderá atualizar a data de início do auxílio moradia
